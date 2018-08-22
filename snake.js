@@ -1,0 +1,132 @@
+	var c = document.getElementById('miCanvas');
+	var ctx = c.getContext('2d');
+	document.addEventListener("keypress", move);
+
+	var x = ctx.canvas.width;
+	var y = ctx.canvas.height;
+	row = x/20;
+	column = y/20;
+	moveX=0;
+	moveY=0;
+
+	var player = [
+		[10, 10],
+		[10, 10],
+		[10, 10]
+		];
+	var nextPos= [10, 10];
+	var apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)];
+
+
+	setInterval(game, 1000/15);
+	//game();
+
+		
+
+	function move(key){
+			switch(key.keyCode){
+				case 37:
+					if (moveX==1){break;}
+					moveX=-1;
+					moveY=0;
+					document.removeEventListener("keydown", move);
+					break;
+				case 38:
+					if (moveY==1){break;}
+					moveX=0;
+					moveY=-1;
+					document.removeEventListener("keydown", move);
+					break;
+				case 39:
+					if (moveX==-1){break;}
+					moveX=1;
+					moveY=0;
+					document.removeEventListener("keydown", move);
+					break;
+				case 40:
+					if (moveY==-1){break;}
+					moveX=0;
+					moveY=1;
+					document.removeEventListener("keydown", move);
+					break;
+			}
+		}
+
+	function game(){
+///////////////////////////////////////  MOVEMENT  ///////////////////////////////////////////////////
+		
+		//next direction
+		nextPos = [
+			player[0][0], 
+			player[0][1] 
+			];
+		nextPos[0]+=moveX;
+		nextPos[1]+=moveY;
+		if (nextPos[0] > 19){
+			nextPos[0] = 0;
+		}else if(nextPos[0] < 0){
+			nextPos[0] = 19;
+		}else if (nextPos[1] > 19){
+			nextPos[1] = 0;
+		}else if(nextPos[1] < 0){
+			nextPos[1] = 19;
+		}
+
+		//self-colition detection
+		if (playerColition(nextPos)) {
+			player = [[10, 10],[10, 10],[10, 10]];
+			nextPos=[10, 10];
+		};
+
+
+		//apple collition detection
+		if (nextPos[0]==apple[0] && nextPos[1]==apple[1]){
+			apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)]
+			console.log("apple")
+		}else{
+			player.pop();
+		}
+
+
+		
+		player.unshift(nextPos);
+
+		document.addEventListener("keydown", move);
+
+
+		//console.log(player.length);
+		
+
+
+////////////////////////////////////////  DRAW GAME  /////////////////////////////////////////////////
+
+		//background
+		ctx.fillStyle = "black"
+		ctx.fillRect(0, 0, x, y); 
+		//player
+		ctx.fillStyle = "white";
+		for(i=0; i<player.length; i++){	
+			ctx.fillRect( player[i][0]*row+1, player[i][1]*column+1, row-2, column-2 );	
+		}							
+
+		ctx.fillStyle = "red";
+		ctx.fillRect(apple[0]*row, apple[1]*column, row, column);													
+
+
+	}
+
+	function applePos(){
+		apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)]
+		if (playerColition(apple)){
+			applePos();
+		} 
+	
+	}
+	function playerColition(arr){
+		for (var i=0; i < player.length; i++) {		
+			if(arr[0]==player[i][0] && arr[1]==player[i][1]){
+				return true;
+			}
+		}
+		return false;
+	}	
