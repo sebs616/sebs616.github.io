@@ -1,28 +1,31 @@
+	//Initialization variables
 	var c = document.getElementById('miCanvas');
 	var ctx = c.getContext('2d');
 	document.addEventListener("keypress", move);
 
+	//Canvas size variebles
 	var x = ctx.canvas.width;
 	var y = ctx.canvas.height;
 	row = x/20;
 	column = y/20;
+
+	//Player variables
 	moveX=0;
 	moveY=0;
-
-	var player = [
+	var initialPlayerPos = [  //initial player position
 		[10, 10],
 		[10, 10],
 		[10, 10]
 		];
+	var player = initialPlayerPos;
 	var nextPos= [10, 10];
 	var apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)];
 
 
 	setInterval(game, 1000/15);
-	//game();
 
 		
-
+//////////////////////////////////////  Key input  //////////////////////////////////////////////////
 	function move(key){
 			switch(key.keyCode){
 				case 37:
@@ -73,23 +76,24 @@
 		}
 
 		//self-colition detection
-		if (playerColition(nextPos)) {
+		var moving = moveY!=0 || moveX!=0;
+		if (moving && playerColition(nextPos)) {
 			player = [[10, 10],[10, 10],[10, 10]];
 			nextPos=[10, 10];
+			moveY=moveX=0;
 		};
 
+		player.unshift(nextPos);
 
 		//apple collition detection
+		
+
 		if (nextPos[0]==apple[0] && nextPos[1]==apple[1]){
-			apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)]
+			applePos();
 			console.log("apple")
 		}else{
 			player.pop();
 		}
-
-
-		
-		player.unshift(nextPos);
 
 		document.addEventListener("keydown", move);
 
@@ -98,10 +102,10 @@
 		
 
 
-////////////////////////////////////////  DRAW GAME  /////////////////////////////////////////////////
+////////////////////////////////////////  DRAW GAME  ////////////////////////////////////////////////////
 
 		//background
-		ctx.fillStyle = "black"
+		ctx.fillStyle = "#694A3B"
 		ctx.fillRect(0, 0, x, y); 
 		//player
 		ctx.fillStyle = "white";
@@ -110,11 +114,12 @@
 		}							
 
 		ctx.fillStyle = "red";
-		ctx.fillRect(apple[0]*row, apple[1]*column, row, column);													
+		ctx.fillRect(apple[0]*row, apple[1]*column, row, column);
 
 
 	}
 
+////////////////////////////////////////  Change apple   /////////////////////////////////////////////////
 	function applePos(){
 		apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)]
 		if (playerColition(apple)){
@@ -122,6 +127,8 @@
 		} 
 	
 	}
+
+////////////////////////////////  Check colition with player  ///////////////////////////////////////////////
 	function playerColition(arr){
 		for (var i=0; i < player.length; i++) {		
 			if(arr[0]==player[i][0] && arr[1]==player[i][1]){

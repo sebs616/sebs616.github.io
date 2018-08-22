@@ -4,11 +4,11 @@
 
   }
 
-  h2{
+  h1{
     color: #423226;
   }
 
-  h3{
+  h2{
     color: #423226;
   }
 
@@ -23,6 +23,15 @@
     padding: 0;
   }
 
+  #title{
+    display:flex;
+    flex-flow: row wrap;
+    flex-direction: column; 
+    height: 20%; 
+    width: 100%;
+    justify-content: flex-end;
+    align-items:center; 
+  }
 
   #box-container {
     display: flex;
@@ -47,7 +56,7 @@
   border-radius: 20px;
   background-color: #694A3B;
   height:60%;
-  width: 99%;
+  width: auto;
  }
 </style>
 
@@ -55,18 +64,19 @@
 <div id="box-container">
 
 
-  <div style="display:flex; flex-direction: column; height:20%; align-items:center; " >
-    <h2>
+  <div id="title">
+    <h1>
       Por el momento ésta página se encuentra bajo construcción!
-    </h2>
-    <h3>Pero sientase libre de jugar snake.</h3>
+    </h1>
   </div>
 
   <div id="box-in">
-    <canvas id="miCanvas"  width="400" height="400" style="border:1px solid #000;" ></canvas>
+    <canvas id="miCanvas"  width="400" height="400"></canvas>
   </div>
 
-    <div></div>
+    <div style=" display: flex; height:auto;" >
+        <h2>Pero sientase libre de jugar snake.</h2>
+    </div>
 </div>
 <script type="text/javascript" src="snake.js" ></script>
 
