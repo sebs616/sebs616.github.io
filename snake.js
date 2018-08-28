@@ -75,6 +75,16 @@
 			nextPos[1] = 19;
 		}
 
+		//apple collition detection
+		
+
+		if (nextPos[0]==apple[0] && nextPos[1]==apple[1]){
+			applePos();
+			console.log("apple")
+		}else{
+			player.pop();
+		}
+
 		//self-colition detection
 		var moving = moveY!=0 || moveX!=0;
 		if (moving && playerColition(nextPos)) {
@@ -85,15 +95,7 @@
 
 		player.unshift(nextPos);
 
-		//apple collition detection
-		
 
-		if (nextPos[0]==apple[0] && nextPos[1]==apple[1]){
-			applePos();
-			console.log("apple")
-		}else{
-			player.pop();
-		}
 
 		document.addEventListener("keydown", move);
 
