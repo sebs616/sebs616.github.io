@@ -74,6 +74,7 @@
 			nextPos[1] = 19;
 		}
 
+<<<<<<< HEAD
 
 		//apple collition detection
 		
@@ -86,6 +87,8 @@
 		}
 
 
+=======
+>>>>>>> parent of ae9c0d3... bug fixes
 		//self-colition detection
 		var moving = moveY!=0 || moveX!=0;
 		if (moving && playerColition(nextPos)) {
