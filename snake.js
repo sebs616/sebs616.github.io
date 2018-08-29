@@ -12,14 +12,12 @@
 	//Player variables
 	moveX=0;
 	moveY=0;
-	var initialPlayerPos = [  //initial player position
+	var player = [
 		[10, 10],
 		[10, 10],
 		[10, 10]
 		];
-	var player = initialPlayerPos;
-	var initialPos= [10, 10];
-	var nextPos= initialPos;
+	var nextPos= [10, 10];
 	var apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)];
 
 
@@ -76,25 +74,24 @@
 			nextPos[1] = 19;
 		}
 
-<<<<<<< HEAD
+
 		//apple collition detection
+		
+
 		if (nextPos[0]==apple[0] && nextPos[1]==apple[1]){
-			nextApplePos();
+			applePos();
+			console.log("apple")
 		}else{
 			player.pop();
 		}
 
 
-
-=======
->>>>>>> parent of ae9c0d3... bug fixes
 		//self-colition detection
 		var moving = moveY!=0 || moveX!=0;
 		if (moving && playerColition(nextPos)) {
-			player = [[10, 10],[10, 10];
-			nextPos=initialPos;
+			player = [[10, 10],[10, 10]];
+			nextPos=[10, 10];
 			moveY=moveX=0;
-			player.pop();
 		};
 
 		player.unshift(nextPos);
@@ -134,10 +131,10 @@
 	}
 
 ////////////////////////////////////////  Change apple   /////////////////////////////////////////////////
-	function nextApplePos(){
+	function applePos(){
 		apple = [Math.floor(Math.random()*19), Math.floor(Math.random()*19)]
 		if (playerColition(apple)){
-			nextApplePos();
+			applePos();
 		} 
 	
 	}
