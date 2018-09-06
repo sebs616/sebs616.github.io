@@ -1,7 +1,7 @@
 	//Initialization variables
 	var c = document.getElementById('miCanvas');
 	var ctx = c.getContext('2d');
-	document.addEventListener("keypress", move);
+	document.addEventListener("keydown", move);
 
 	//Canvas size variebles
 	var x = ctx.canvas.width;
@@ -31,25 +31,25 @@
 					if (moveX==1){break;}
 					moveX=-1;
 					moveY=0;
-					document.removeEventListener("keypress", move);
+					document.removeEventListener("keydown", move);
 					break;
 				case 38:
 					if (moveY==1){break;}
 					moveX=0;
 					moveY=-1;
-					document.removeEventListener("keypress", move);
+					document.removeEventListener("keydown", move);
 					break;
 				case 39:
 					if (moveX==-1){break;}
 					moveX=1;
 					moveY=0;
-					document.removeEventListener("keypress", move);
+					document.removeEventListener("keydown", move);
 					break;
 				case 40:
 					if (moveY==-1){break;}
 					moveX=0;
 					moveY=1;
-					document.removeEventListener("keypress", move);
+					document.removeEventListener("keydown", move);
 					break;
 			}
 		}
@@ -97,7 +97,7 @@
 
 	
 
-		document.addEventListener("keypress", move);
+		document.addEventListener("keydown", move);
 
 
 		//console.log(player.length);
