@@ -31,25 +31,25 @@
 					if (moveX==1){break;}
 					moveX=-1;
 					moveY=0;
-					document.removeEventListener("keydown", move);
+					document.removeEventListener("keypress", move);
 					break;
 				case 38:
 					if (moveY==1){break;}
 					moveX=0;
 					moveY=-1;
-					document.removeEventListener("keydown", move);
+					document.removeEventListener("keypress", move);
 					break;
 				case 39:
 					if (moveX==-1){break;}
 					moveX=1;
 					moveY=0;
-					document.removeEventListener("keydown", move);
+					document.removeEventListener("keypress", move);
 					break;
 				case 40:
 					if (moveY==-1){break;}
 					moveX=0;
 					moveY=1;
-					document.removeEventListener("keydown", move);
+					document.removeEventListener("keypress", move);
 					break;
 			}
 		}
@@ -97,7 +97,7 @@
 
 	
 
-		document.addEventListener("keydown", move);
+		document.addEventListener("keypress", move);
 
 
 		//console.log(player.length);
