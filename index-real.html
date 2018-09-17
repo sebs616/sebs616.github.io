@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <style>
-  .techo{
-    top: 0px;
-    padding: 1.5em;
-  }
-   a:visited{ color: #C4EDE6; }
+  html{
+    height:100%;
+   }
+
+  body{   
+    width: 100%;
+    margin:0;
+    background-repeat: no-repeat;
+    background: linear-gradient( #719C98, #203036)
+   }
+
+
+   a:visited{ border-bottom: 10px solid #423226; }
 
    .card {
+      display: flex; 
+      justify-content: flex-end;
       position: fixed;
-      overflow: hidden;
       width: 100%;
-      background-color: #423226;
+      background-color: ;
 
    }
 
    .card a{
-    float: left;
-    color: #C4EDE6;
+    color: #423226;
     text-align: center;
-    font-family: helvetica;
-    padding: 1em 1em;
     text-decoration: none;
-    font-size: 1.5vmax;
+    font-family: helvetica;
+    padding: .6em 1em;
+    margin-top: .5em;
+    margin-right: 10px;
+    font-size: 2vmax;
    }
 
    .card a:hover {
-      background-color: #694A3B;
+      border-bottom: 10px solid #423226;
    }
 
-   .fill{
-      width: 100%;
-      height:2000px;
-      background: linear-gradient(180deg, #719C98 1600px, #203036)
-   } 
-
-   body{
-      padding: 0;
-      margin: 0;
-   }
+   
 </style>
 
 <div class="card">
@@ -46,6 +47,6 @@
    <a href="#lmao">LMAO</a>
 </div>
 
-<div class="fill"><div class="techo"></div>
 
-</div>
+
+
